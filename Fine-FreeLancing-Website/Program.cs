@@ -9,16 +9,24 @@ builder.Services.AddControllersWithViews();
 
 var ConnString = builder.Configuration.GetConnectionString("MySQlConn");
 
-builder.Services.AddScoped <IJobRepository, JobRepository>();
+builder.Services.AddScoped<IJobRepository, JobRepository>();
 
 builder.Services.AddDbContext<MyDbContext>(options =>
 {
     options.UseMySql(ConnString, ServerVersion.AutoDetect(ConnString));
 });
 
-builder.Services.AddIdentity<User, IdentityRole>().
-    AddEntityFrameworkStores<MyDbContext>().AddDefaultTokenProviders();
-var app = builder.Build(); 
+builder.Services.AddIdentity()
+    .AddEntityFrameworkStores<MyDbContext>()
+    .AddDefaultTokenProviders();
+
+var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<MyDbContext>();
+    dbContext.Database.Migrate();
+}
 
 if (!app.Environment.IsDevelopment())
 {
@@ -33,8 +41,6 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
-
 
 app.MapControllerRoute(
     name: "default",
