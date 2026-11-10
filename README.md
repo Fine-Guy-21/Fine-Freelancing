@@ -1,30 +1,87 @@
-# asp-dot-net-core-Final-Project
+# Fine Freelancing Marketplace
 
-Freelancing websites have become an integral part of the modern digital economy, providing a platform for individuals and businesses to connect and collaborate on a wide range of projects. These platforms have revolutionized the way people work, allowing professionals from various fields to offer their skills and services on a flexible basis.
+A full-stack two-sided freelancing platform built with **ASP.NET Core**, designed to connect clients with skilled freelancers through structured job postings, proposal management, rating systems, and tiered premium memberships.
 
-One of the key advantages of freelancing websites is the opportunity they provide for both clients and freelancers to find each other easily. Clients can post their projects, specifying their requirements, budget, and timeline, while freelancers can create profiles highlighting their skills, expertise, and previous work experience. This matchmaking process allows clients to choose from a diverse pool of talented individuals, and freelancers to explore a wide array of job opportunities.
+**Live Demo:** [Add your MonsterASP.NET or Render URL here]
 
-Moreover, freelancing websites provide a platform for freelancers to build their online presence and establish a reputation in their respective fields. Positive client reviews and ratings can enhance their credibility and attract more opportunities. Additionally, these websites often offer features such as skills testing and portfolio showcases, enabling freelancers to demonstrate their expertise and stand out from the competition.
+---
 
-By Using our platform you can get 
-  #Comprehensive Job Posting:
-A user-friendly platform that allows businesses and individuals to post detailed job descriptions, including project scope, required skills, budget, and timeline. This ensures that clients can effectively communicate their project requirements and attract qualified freelancers.
+## Key Features
 
-  #Efficient Job Hiring:
-Streamlined processes for clients to review freelancer profiles, portfolios, and ratings. The platform provides tools to facilitate efficient candidate evaluation, enabling clients to make informed hiring decisions quickly and effectively.
+* **Role-Based Access Control:** Separate workflows and permissions for **Clients**, **Freelancers**, and **Administrators** powered by ASP.NET Core Identity.
+* **Job Posting & Discovery:** Clients can publish detailed project scopes, budgets, and timelines, while freelancers browse and filter relevant opportunities.
+* **Hiring & Candidate Evaluation:** Streamlined application review workflow allowing clients to inspect freelancer portfolios, past ratings, and proposals before hiring.
+* **Ratings & Reviews:** Post-project feedback system calculating freelancer reputation scores based on communication and delivery quality.
+* **Tiered Premium Features:**
+  * Unlimited job postings and dual client/freelancer account capabilities.
+  * Advanced search filters and personalized job recommendations.
+  * Ad-free workspace experience.
 
-  #Vast Freelancer Working Opportunities: 
-A diverse and extensive pool of talented freelancers from various industries and skill sets. The platform connects clients with a wide range of professionals, ensuring they can find the perfect match for their project needs.
+---
 
-  #Freelancer Rating and Review System: 
-A transparent feedback system that allows clients to rate and provide reviews for freelancers based on their performance, communication, and professionalism. This feature enhances trust and helps both clients and freelancers make informed decisions.
+## Tech Stack
 
-  #Premium Features for Enhanced Experience:
-5.1. All-in-One Posting and Hiring: 
-Premium users have the ability to post job opportunities and hire freelancers without limitations. This feature offers convenience and flexibility for clients who play both roles.
+* **Backend:** C#, ASP.NET Core (MVC / Web App)
+* **ORM & Database:** Entity Framework Core, SQL Server (or PostgreSQL)
+* **Authentication:** ASP.NET Core Identity
+* **Frontend:** Razor Views, HTML5, CSS3, Bootstrap, JavaScript
 
-5.2. Filtered Job Recommendations: 
-Premium users gain access to advanced filters and personalized recommendations, enabling them to find highly relevant and tailored job opportunities efficiently.
+---
 
-5.3. Ad-Free Platform: 
-Premium users enjoy an ad-free experience, ensuring an uninterrupted and focused browsing and working environment. 
+## Getting Started (Local Setup)
+
+### Prerequisites
+* [.NET SDK](https://microsoft.com) (6.0 / 7.0 / 8.0+)
+* [SQL Server](https://microsoft.com) or SQL Server Express / LocalDB
+* [Git](https://git-scm.com)
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com
+cd asp-dot-net-core-Final-Project/Fine-FreeLancing-Website
+```
+
+### 2. Configure the Database Connection
+Open `appsettings.json` inside the project folder and update `DefaultConnection` to match your local database server:
+```json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=FineFreelancingDb;Trusted_Connection=True;MultipleActiveResultSets=true"
+  }
+}
+```
+
+### 3. Apply Entity Framework Migrations
+Restore dependencies and create the database tables:
+```bash
+dotnet restore
+dotnet ef database update
+```
+*(If `dotnet-ef` is not installed, run `dotnet tool install --global dotnet-ef` first.)*
+
+### 4. Run the Application
+```bash
+dotnet run
+```
+Open your browser and navigate to `https://localhost:5001` (or the local port shown in your terminal).
+
+---
+
+## Project Structure
+
+```text
+├── Fine-FreeLancing-Website/
+│   ├── Controllers/        # Request handling and business logic
+│   ├── Models/             # Domain entities and ViewModels
+│   ├── Views/              # Razor UI templates
+│   ├── Data/               # EF Core DbContext and migrations
+│   ├── wwwroot/            # Static assets (CSS, JS, images)
+│   └── Program.cs          # App configuration and service registration
+└── README.md
+```
+
+---
+
+## License
+
+This project is open-source and available under the MIT License.
